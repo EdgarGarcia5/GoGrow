@@ -1,0 +1,32 @@
+let cart = [];
+let total = 0;
+
+function addToCart() {
+  const product = {
+    name: 'GoGrow',
+    price: 149.9
+  };
+
+  cart.push(product);
+  total += product.price;
+
+  updateCart();
+}
+
+function updateCart() {
+  const cartElement = document.getElementById('cart');
+  const totalElement = document.getElementById('total');
+
+  // Limpiar el carrito antes de actualizar
+  cartElement.innerHTML = '';
+
+  // Actualizar la lista del carrito
+  cart.forEach(product => {
+    const li = document.createElement('li');
+    li.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+    cartElement.appendChild(li);
+  });
+
+  // Actualizar el total
+  totalElement.textContent = total.toFixed(2);
+}
