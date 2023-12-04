@@ -1,0 +1,90 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoGrow Tienda en Línea</title>
+  <style>
+    /* Estilos básicos (puedes personalizar según tus necesidades) */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    section {
+      padding: 20px;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GoGrow Tienda en Línea</h1>
+  </header>
+
+  <section>
+    <h2>Producto</h2>
+    <p>GoGrow por solo $149.9</p>
+    <button onclick="agregarAlCarrito()">Agregar al Carrito</button>
+  </section>
+
+  <section>
+    <h2>Carrito de Compras</h2>
+    <ul id="carrito"></ul>
+    <p>Total: $<span id="total">0</span></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 GoGrow Tienda en Línea</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+    let total = 0;
+
+    function agregarAlCarrito() {
+      const producto = {
+        nombre: 'GoGrow',
+        precio: 149.9
+      };
+
+      carrito.push(producto);
+      total += producto.precio;
+
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const carritoElement = document.getElementById('carrito');
+      const totalElement = document.getElementById('total');
+
+      // Limpiar el carrito antes de actualizar
+      carritoElement.innerHTML = '';
+
+      // Actualizar la lista del carrito
+      carrito.forEach(producto => {
+        const li = document.createElement('li');
+        li.textContent = `${producto.nombre} - $${producto.precio.toFixed(2)}`;
+        carritoElement.appendChild(li);
+      });
+
+      // Actualizar el total
+      totalElement.textContent = total.toFixed(2);
+    }
+  </script>
+</body>
+</html>
